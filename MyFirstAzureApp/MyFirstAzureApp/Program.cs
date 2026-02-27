@@ -1,5 +1,6 @@
 using MyFirstAzureApp.Client.Pages;
 using MyFirstAzureApp.Components;
+using MyFirstAzureApp.Config;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
+builder.Services.Configure<AppSettings>(
+    builder.Configuration.GetSection(nameof(AppSettings))
+);
 
 var app = builder.Build();
 
